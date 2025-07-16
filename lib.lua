@@ -206,6 +206,14 @@ function Flux:Window(text, bottom,mainclr,toclose)
 		end
 	)
 	
+    local Window = {}
+    function Window:Destroy()
+        if MainFrame and MainFrame.Parent then
+            MainFrame:Destroy()
+        end
+    end
+    
+
 	function Flux:Notification(desc,buttontitle)
 		for i, v in next, MainFrame:GetChildren() do
 			if v.Name == "NotificationBase" then
@@ -396,6 +404,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 			{BackgroundTransparency = 0}
 		):Play()
 	end
+
 	local Tabs = {}
 	function Tabs:Tab(text,ico)
 		local Tab = Instance.new("TextButton")
@@ -2745,21 +2754,6 @@ function Flux:Window(text, bottom,mainclr,toclose)
 		return ContainerContent
 	end
 	return Tabs
-end
-
-function Flux:Destroy() 
-    if Flux.Main then
-        Flux.Main:Destroy()
-    end
-    if Flux.RainbowColorPicker then
-        Flux.RainbowColorPicker = false
-    end
-    if Flux.ColorInput then
-        Flux.ColorInput:Disconnect()
-    end
-    if Flux.HueInput then
-        Flux.HueInput:Disconnect()
-    end
 end
 
 return Flux
